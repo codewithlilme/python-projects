@@ -30,3 +30,21 @@ def get_all_lessons(id:int):
 def add_lesson(lesson:Lesson):
     lessons.append(lesson)
     return lesson
+
+#updating a lesson
+@app.put("/lesson")
+def update_lesson(id:int,lesson:Lesson):
+    for i in range(len(lessons)):
+        if lessons[i].id == id:
+            lessons[i] = lesson
+            return "Product updated successfully"
+    return "Unable to update product."
+
+#deleting lesson
+@app.delete("/lesson")
+def delete_lesson(id:int):
+    for i in range(len(lessons)):
+        if lessons[i].id == id:
+            del lessons[i]
+            return "Product successfully deleted"
+    return "Product not found"
