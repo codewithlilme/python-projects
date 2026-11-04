@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from models import Lesson
+from database import session , engine
+import databasemodels
+
 app = FastAPI()
+
+databasemodels.Base.metadata.create_all(bind = engine)
 
 @app.get("/")
 def greet():
@@ -14,12 +19,14 @@ lessons = [
 
 #fetching all lessons
 @app.get("/lessons")
-def all_lessons():
+def get_all_lessons():
+    db = session()
+    db.query()
     return lessons
 
 #fetching lessons by id 
 @app.get("/lesson/{id}")
-def get_all_lessons(id:int):
+def get_lesson_by_id(id:int):
     for Lesson in lessons:
         if Lesson.id == id:
             return Lesson
