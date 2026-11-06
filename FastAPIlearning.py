@@ -17,11 +17,19 @@ lessons = [
     Lesson(id=5,name="Lily",Lecturer="dan",fees=40)
 ]
 
+def init_db():
+    db = session()
+    for lesson in lessons:
+        db.add(databasemodels.Lesson(**lesson.model_dump()))
+    db.commit()
+
+init_db()
+
 #fetching all lessons
 @app.get("/lessons")
 def get_all_lessons():
-    db = session()
-    db.query()
+    #db = session()
+    #db.query()
     return lessons
 
 #fetching lessons by id 
