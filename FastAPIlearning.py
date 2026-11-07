@@ -61,5 +61,12 @@ def delete_lesson(id:int):
     for i in range(len(lessons)):
         if lessons[i].id == id:
             del lessons[i]
-            return "Product successfully deleted"
-    return "Product not found"
+            return "Lesson successfully deleted"
+    return "Lesson not found"
+
+@app.get("/lesson/fees/{fees}")
+def get_lesson_by_fees(fees:int):
+    for Lesson in lessons:
+        if Lesson.fees == fees:
+            return Lesson
+    return "Lesson not found"
